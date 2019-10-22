@@ -11,94 +11,106 @@ public class Student {
     private String state;
     private int zipcode;
     private ArrayList<Student> studentarray;
-    /*public Student(String a, String b, int c, String d, String e, String f, String g, char h, int i){
-        firstname=a;
-        lastname=b;
-        ID=c;
-        classStanding=d;
-        email=e;
-        addressLine=f;
-        city=g;
-        state=h;
-        zipcode=i;
-    }*/
+    private static int count=0;
 
-    public Student(){}
+    public Student() { }
 
-    public ArrayList getArray() {
-        return studentarray;
-    }
-
-    public void firstname_(String a){
+    public void firstname_(String a) {
         char[] b = a.toCharArray();
         for (char c : b) {
-            if(!Character.isLetter(c)) {
+            if (!Character.isLetter(c)) {
                 System.out.println("Error");
                 System.exit(0);
             }
         }
-        firstname=a;
+        firstname = a;
+        count++;
     }
-    public void lastname_(String a){
+
+    public void lastname_(String a) {
         char[] b = a.toCharArray();
         for (char c : b) {
-            if(!Character.isLetter(c)) {
+            if (!Character.isLetter(c)) {
                 System.out.println("Error");
                 System.exit(0);
             }
         }
-        lastname=a;
+        lastname = a;
     }
-    public void ID_(int a){
-        if (a>9999999){
+
+    public void ID_(int a) {
+        if (a > 9999999) {
             System.out.println("Error, greater than 7");
             System.exit(0);
-        }
-        else if (!(a==(int)a)){
+        } else if (!(a == (int) a)) {
             System.out.println("Error, not an integer");
             System.exit(0);
         }
-        ID=a;
-
+        ID = a;
     }
-    public void classstanding_(String a){ //fix this
-        if(a=="freshman"||a=="sophomore"||a=="junior"||a=="senior"){
-            classStanding=a;
+
+    public void classstanding_(String a) {
+        if (a.equals("freshman") || (a.equals("sophomore")) || (a.equals("junior")) || (a.equals("senior"))) {
+            classStanding = a;
+        } else {
+            System.out.println("Error");
+            System.exit(0);
+        }
+    }
+
+    public void email_(String a) { //I don't know how to do this without regex.
+        email=a;
+    }
+
+    public void addressLine_(String a) { //I also don't know how to do this one.
+        addressLine = a;
+    }
+
+    public void city_(String a) {
+        char[] b = a.toCharArray();
+        for (char c : b) {
+            if (!Character.isLetter(c)) {
+                System.out.println("Error");
+                System.exit(0);
+            }
+        }
+        city = a;
+    }
+
+    public void state_(String a) {
+        if (a.equals("AK")||(a.equals("AL"))||(a.equals("AR"))||(a.equals("AZ"))||(a.equals("CA"))||(a.equals("CO"))||(a.equals("CT"))||(a.equals("DC"))||(a.equals("DE"))||(a.equals("FL"))||(a.equals("GA"))||(a.equals("HI"))||(a.equals("IA"))||(a.equals("ID"))||(a.equals("IL"))||(a.equals("IN"))||(a.equals("KS"))||(a.equals("KY"))||(a.equals("LA"))||(a.equals("MA"))||(a.equals("MD"))||(a.equals("ME"))||(a.equals("MI"))||(a.equals("MN"))||(a.equals("MO"))||(a.equals("MS"))||(a.equals("MT"))||(a.equals("NC"))||(a.equals("ND"))||(a.equals("NE"))||(a.equals("NH"))||(a.equals("NJ"))||(a.equals("NM"))||(a.equals("NV"))||(a.equals("OH"))||(a.equals("OK"))||(a.equals("OR"))||(a.equals("PA"))||(a.equals("RI"))||(a.equals("SC"))||(a.equals("SD"))||(a.equals("TN"))||(a.equals("TX"))||(a.equals("UT"))||(a.equals("VA"))||(a.equals("VT"))||(a.equals("WA"))||(a.equals("WI"))||(a.equals("WV"))||(a.equals("WY"))){
+            state = a;
         }
         else {
             System.out.println("Error");
             System.exit(0);
         }
     }
-    public static boolean email_(String email) //fix this
-    {
-        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
-                "[a-zA-Z0-9_+&*-]+)*@" +
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-                "A-Z]{2,7}$";
 
-        Pattern pat = Pattern.compile(emailRegex);
-        if (email == null)
-            return false;
-        return pat.matcher(email).matches();
-    }
-    public void addressLine_(String a){
-        addressLine=a;
-    }
-    public void city_(String a){
-        char[] b = a.toCharArray();
-        for (char c : b) {
-            if(!Character.isLetter(c)) {
-                System.out.println("Error");
-                System.exit(0);
-            }
+    public void zipcode_(int a) {
+        if (a > 999999999) {
+            System.out.println("Error");
+            System.exit(0);
+        } else if (!(a == (int) a)) {
+            System.out.println("Error, not an integer");
+            System.exit(0);
         }
-        city=a;
+        zipcode = a;
     }
-    public void state_(String a){
-        state=a;
+
+    public void getInfo(){
+        System.out.println("First name: "+firstname);
+        System.out.println("Last name: "+lastname);
+        System.out.println("ID: "+ID);
+        System.out.println("Class Standing: "+classStanding);
+        System.out.println("Email: "+email);
+        System.out.println("Address: "+addressLine);
+        System.out.println(city);
+        System.out.println(state);
+        System.out.println(zipcode);
     }
-    public void zipcode_(int a){
-        zipcode=a;
+
+    public static int getCount(){
+        return count;
     }
 }
